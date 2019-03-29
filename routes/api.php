@@ -17,42 +17,42 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/vehicles/create');
-Route::get('/vehicles/show');
-Route::post('/vehicles/update');
-Route::post('/vehicles/delete');
+Route::post('/vehicles/create', 'UserVehiclesController@api_create');
+Route::get('/vehicles/read/{user_vehicle_id}', 'UserVehiclesController@api_read');
+Route::post('/vehicles/update', 'UserVehiclesController@api_update');
+Route::post('/vehicles/delete', 'UserVehiclesController@api_delete');
 
-Route::post('/customers/create');
-Route::get('/customers/show');
-Route::post('/customers/update');
-Route::post('/customers/delete');
+Route::post('/users/create', 'UserAccountsController@api_create');
+Route::get('/users/read/{user_account_id}', 'UserAccountsController@api_read');
+Route::post('/users/update', 'UserAccountsController@api_update');
+Route::post('/users/delete', 'UserAccountsController@api_delete');
 
-Route::post('/parkings/create');
-Route::get('/parkings/show');
-Route::post('/parkings/update');
-Route::post('/parkings/delete');
+Route::post('/parkings/create', 'ParkingSessionsController@api_create');
+Route::get('/parkings/read/{parking_session_id}', 'ParkingSessionsController@api_read');
+Route::post('/parkings/update', 'ParkingSessionsController@api_update');
+Route::post('/parkings/delete', 'ParkingSessionsController@api_delete');
 
-Route::post('/revenues/create');
-Route::get('/revenues/show');
-Route::post('/revenues/update');
-Route::post('/revenues/delete');
+Route::post('/revenues/create', 'CityRevenuesController@api_create');
+Route::get('/revenues/read/{revenue_id}', 'CityRevenuesController@api_read');
+Route::post('/revenues/update', 'CityRevenuesController@api_update');
+Route::post('/revenues/delete', 'CityRevenuesController@api_delete');
 
-Route::post('/admin/create');
-Route::get('/admin/show');
-Route::post('/admin/update');
-Route::post('/admin/delete');
+Route::post('/admin/create', 'CityAccountsController@api_create');
+Route::get('/admin/read/{city_account_id}', 'CityAccountsController@api_read');
+Route::post('/admin/update', 'CityAccountsController@api_update');
+Route::post('/admin/delete', 'CityAccountsController@api_delete');
 
 Route::post('/password-resets/create');
-Route::get('/password-resets/show');
+Route::get('/password-resets/read');
 Route::post('/password-resets/update');
 Route::post('/password-resets/delete');
 
-Route::post('/subuser/create');
-Route::get('/subuser/show');
-Route::post('/subuser/update');
-Route::post('/subuser/delete');
+Route::post('/subuser/create', 'SubuserAccountsController@api_create');
+Route::get('/subuser/read/{subuser_account_id}', 'SubuserAccountsController@api_read');
+Route::post('/subuser/update', 'SubuserAccountsController@api_update');
+Route::post('/subuser/delete', 'SubuserAccountsController@api_delete');
 
-Route::post('/spots/create');
-Route::get('/spots/show');
-Route::post('/spots/update');
-Route::post('/spots/delete');
+Route::post('/spots/create', 'ParkingSpotsController@api_create');
+Route::get('/spots/read/{parking_spot_id}', 'ParkingSpotsController@api_read');
+Route::post('/spots/update', 'ParkingSpotsController@api_update');
+Route::post('/spots/delete', 'ParkingSpotsController@api_delete');

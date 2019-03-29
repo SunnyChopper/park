@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParkingSpotsTable extends Migration
+class CreateSubuserAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateParkingSpotsTable extends Migration
      */
     public function up()
     {
-        Schema::create('parking_spots', function (Blueprint $table) {
+        Schema::create('subuser_accounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('admin_id');
-            $table->integer('spot_number');
-            $table->double('amount_per_hour');
+            $table->integer('city_id');
+            $table->string('first_name', 128);
+            $table->string('last_name', 128);
+            $table->string('email', 128);
+            $table->string('username', 128);
+            $table->string('password', 128);
+            $table->integer('permission')->default(0);
             $table->integer('is_active')->default(1);
             $table->timestamps();
         });
@@ -30,6 +34,6 @@ class CreateParkingSpotsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parking_spots');
+        Schema::dropIfExists('subuser_accounts');
     }
 }

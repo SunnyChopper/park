@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParkingsTable extends Migration
+class CreateParkingSessionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateParkingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('parkings', function (Blueprint $table) {
+        Schema::create('parking_sessions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('city_id');
             $table->integer('parking_spot_id');
             $table->integer('customer_id');
             $table->integer('vehicle_id');
@@ -34,6 +35,6 @@ class CreateParkingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parkings');
+        Schema::dropIfExists('parking_sessions');
     }
 }

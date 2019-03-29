@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubuserAccountsTable extends Migration
+class CreateUserVehiclesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateSubuserAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subuser_accounts', function (Blueprint $table) {
+        Schema::create('user_vehicles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('admin_id');
-            $table->string('first_name', 128);
-            $table->string('last_name', 128);
-            $table->string('email', 256);
-            $table->string('username', 128);
-            $table->string('password', 128);
-            $table->integer('permission');
+            $table->integer('customer_id');
+            $table->string('color', 64);
+            $table->integer('year');
+            $table->string('make', 128);
+            $table->string('model', 128);
+            $table->string('license_plate', 64);
             $table->integer('is_active')->default(1);
             $table->timestamps();
         });
@@ -34,6 +33,6 @@ class CreateSubuserAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subuser_accounts');
+        Schema::dropIfExists('user_vehicles');
     }
 }
