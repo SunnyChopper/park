@@ -4,38 +4,35 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-6 footer-info">
 					<img src="img/logo.png" alt="TheEvenet">
-					<p>In alias aperiam. Placeat tempore facere. Officiis voluptate ipsam vel eveniet est dolor et totam porro. Perspiciatis ad omnis fugit molestiae recusandae possimus. Aut consectetur id quis. In inventore consequatur ad voluptate cupiditate debitis accusamus repellat cumque.</p>
+					<p>Our mission is to create the parking experience as seamless and effortless as possible.</p>
 				</div>
 
 				<div class="col-lg-3 col-md-6 footer-links">
 					<h4>Useful Links</h4>
 					<ul>
-						<li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
-						<li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
-						<li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-						<li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
-						<li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
+						@if(Auth::guest())
+						<li><i class="fa fa-angle-right"></i> <a href="#">Login</a></li>
+						<li><i class="fa fa-angle-right"></i> <a href="#">Register</a></li>
+						@endif
 					</ul>
 				</div>
 
 				<div class="col-lg-3 col-md-6 footer-links">
-					<h4>Useful Links</h4>
+					<h4>Legal</h4>
 					<ul>
-						<li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
-						<li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
-						<li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-						<li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
+						<li><i class="fa fa-angle-right"></i> <a href="#">Careers</a></li>
+						<li><i class="fa fa-angle-right"></i> <a href="#">Terms of Service</a></li>
 						<li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
 					</ul>
 				</div>
 
 				<div class="col-lg-3 col-md-6 footer-contact">
 					<h4>Contact Us</h4>
-					<p>A108 Adam Street <br>
-					New York, NY 535022<br>
+					<p>701 S Franklin Ave <br>
+					Normal, IL 61761<br>
 					United States <br>
-					<strong>Phone:</strong> +1 5589 55488 55<br>
-					<strong>Email:</strong> info@example.com<br>
+					<strong>Phone:</strong> +1 217 419 4494<br>
+					<strong>Email:</strong> info@iparkapp.com<br>
 					</p>
 
 					<div class="social-links">
@@ -52,7 +49,7 @@
 
 	<div class="container">
 		<div class="copyright">
-		&copy; Copyright <strong>TheEvent</strong>. All Rights Reserved
+		&copy; Copyright <strong>iPark App</strong>. All Rights Reserved
 		</div>
 		<div class="credits">
 			<!--

@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('/how-it-works', 'PagesController@how_it_works');
