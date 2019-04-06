@@ -12,8 +12,8 @@ class UserAccountsController extends Controller
     	$user_account = new UserAccount;
     	$user_account->first_name = $data->first_name;
     	$user_account->last_name = $data->last_name;
-    	$user_account->email = $data->email;
-    	$user_account->username = $data->username;
+    	$user_account->email = strtolower($data->email);
+    	$user_account->username = strtolower($data->username);
     	$user_account->password = Hash::make($data->password);
     	$user_account->save();
 
@@ -61,5 +61,50 @@ class UserAccountsController extends Controller
     	return response()->json([
     		'id' => $user_account->id
     	]);
+    }
+
+    public function api_check_username(Request $data) {
+        if (UserAccount::where('username', strtolower($data->username))->count() > 0) {
+            return response()->json([
+                'available' => false
+            ]);  
+        } else {
+            return response()->json([
+                'available' => true
+            ]);
+        }
+    }
+
+    public function api_check_email(Request $data) {
+        if (UserAccount::where('email', strtolower($data->email))->count() > 0) {
+            return response()->json([
+                'available' => false
+            ]);  
+        } else {
+            return response()->json([
+                'available' => true
+            ]);
+        }
+    }
+
+    public function api_login(Request $data) {
+        if (UserAccount::where('username', strtolower($data->username))->count() > 0) {
+            $user_account = UserAccount::where('username', strtolower($data->username))->first();
+            if (Hash::check($data->password, $user_account->password)) {
+                return response()->json([
+                    'login_status' => true
+                ]); 
+            } else {
+                return response()->json([
+                    'login_status' => false,
+                    'error' => 'Password is incorrect.'
+                ]);
+            }
+        } else {
+            return response()->json([
+                    'login_status' => false,
+                    'error' => 'Password is incorrect.'
+                ]);
+        }
     }
 }
