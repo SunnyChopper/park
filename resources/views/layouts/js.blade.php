@@ -11,3 +11,5 @@
 
 <!-- Template Main Javascript File -->
 <script src="{{ URL::asset('js/main.js') }}"></script>
+
+@yield('page_js')

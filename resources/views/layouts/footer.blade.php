@@ -3,16 +3,18 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6 footer-info">
-					<img src="img/logo.png" alt="TheEvenet">
+					<img src="{{ URL::asset('img/logo.png') }}" alt="iPark Logo">
 					<p>Our mission is to create the parking experience as seamless and effortless as possible.</p>
 				</div>
 
 				<div class="col-lg-3 col-md-6 footer-links">
 					<h4>Useful Links</h4>
 					<ul>
-						@if(Auth::guest())
-						<li><i class="fa fa-angle-right"></i> <a href="#">Login</a></li>
-						<li><i class="fa fa-angle-right"></i> <a href="#">Register</a></li>
+						@if(App\Custom\UserAccountHelper::is_user_logged_in() == false)
+						<li><i class="fa fa-angle-right"></i> <a href="/login">Login</a></li>
+						<li><i class="fa fa-angle-right"></i> <a href="/register">Register</a></li>
+						@elseif(App\Custom\UserAccountHelper::is_user_logged_in() == true)
+						<li><i class="fa fa-angle-right"></i> <a href="/members/dashboard">Dashboard</a></li>
 						@endif
 					</ul>
 				</div>
@@ -22,7 +24,7 @@
 					<ul>
 						<li><i class="fa fa-angle-right"></i> <a href="#">Careers</a></li>
 						<li><i class="fa fa-angle-right"></i> <a href="#">Terms of Service</a></li>
-						<li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
+						<li><i class="fa fa-angle-right"></i> <a href="#">Privacy Policy</a></li>
 					</ul>
 				</div>
 

@@ -7,3 +7,10 @@
 	background-color: #c61b3a;
 	border: 1px solid #c61b3a;
 }
+
+.gray-box {
+	background-color: #EAEAEA;
+	padding: 24px;
+	border-radius: 8px;
+	border-bottom: 2px solid #cdcdcd;
+}
