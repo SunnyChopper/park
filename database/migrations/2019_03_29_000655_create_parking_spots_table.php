@@ -17,9 +17,11 @@ class CreateParkingSpotsTable extends Migration
             $table->increments('id');
             $table->integer('city_id');
             $table->integer('spot_number');
-            $table->integer('zone_number');
+            $table->integer('zone_id');
             $table->double('amount_per_hour');
             $table->integer('dynamic_pricing')->default(0);
+            $table->double('dynamic_price')->nullable();
+            $table->integer('status')->default(0);
             $table->integer('is_active')->default(1);
             $table->timestamps();
         });
