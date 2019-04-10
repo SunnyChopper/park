@@ -8,5 +8,11 @@
 				<hr />
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-12">
+				<h3 class="text-center">1</h3>
+			</div>
+		</div>
 	</div>
 @endsection
