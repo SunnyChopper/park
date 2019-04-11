@@ -130,7 +130,6 @@ class UserAccountsController extends Controller
         );
         $stripe_helper->checkout($checkoutData);
         $user_id = $data->user_id;
-        return $user_id;
         $parking_sessions = ParkingSession::where('customer_id', $user_id)->where('paid', 0)->get();
         foreach ($parking_sessions as $unpaid) {
             $unpaid->paid = 1;
