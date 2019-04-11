@@ -35,3 +35,5 @@ Route::get('/city/parkings', 'CityController@view_parking_spots');
 Route::get('/city/parkings/new', 'CityController@new_parking_spot');
 Route::post('/city/parkings/create', 'ParkingSpotsController@create');
 Route::get('/city/logout', 'CityController@logout');
+
+Route::get('/simulate/parking/start', 'CityController@simulate_start_parking');

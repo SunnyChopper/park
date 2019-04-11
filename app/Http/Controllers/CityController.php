@@ -67,6 +67,14 @@ class CityController extends Controller
         return view('city-dashboard.spots.new')->with('page_title', $page_title)->with('city', $city)->with('zones', $zones);
     }
 
+    public function simulate_start_parking() {
+        $parking_spot = ParkingSpot::where('spot_number', 1)->first();
+        $parking_spot->status = 2;
+        $parking_spot->save();
+
+        return redirect(url('/city/parkings'));
+    }
+
     public function logout() {
     	// TODO: Implement logout feature
     	return redirect(url('/'));
