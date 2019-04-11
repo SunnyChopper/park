@@ -41,9 +41,9 @@ class ParkingSessionsController extends Controller
             $timestamp = Carbon::now()->timestamp;
             $parking_session->end_time = $timestamp;
 
-            $spot_id = $parking_session->parking_spot_id;
-            $spot = ParkingSpot::find($spot_id);
-            $amount_per_hour = $spot->amount_per_hour;
+            // $spot_id = $parking_session->parking_spot_id;
+            // $spot = ParkingSpot::find($spot_id);
+            // $amount_per_hour = $spot->amount_per_hour;
 
             // $start_time = $parking_session->start_time;
             // $end_time = new DateTime($timestamp);
