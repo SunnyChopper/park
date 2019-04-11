@@ -35,6 +35,7 @@ class ParkingSessionsController extends Controller
 
     public function api_update(Request $data) {
     	$parking_session = ParkingSession::find($data->parking_session_id);
+        return $data->end_time;
 
         if (isset($data->end_time)) {
             $timestamp = date('Y-m-d G:i:s');
