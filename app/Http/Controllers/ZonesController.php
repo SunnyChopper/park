@@ -61,10 +61,8 @@ class ZonesController extends Controller
     public function api_get_near(Request $data) {
     	$latitude = $data->latitude;
     	$longitude = $data->longitude;
-
-        return $latitude;
-        
     	$distance = 10;
+
     	$nearby_zones = Zone::getByDistance($latitude, $longitude, $distance);
     	if (empty($nearby_zones)) {
     		while (empty($nearby_zones)) {
@@ -78,7 +76,7 @@ class ZonesController extends Controller
     			}
     		}
     	}
-    	
+
     	if (empty($nearby_zones)) {
     		return response()->json([
 	    		'zones' => $nearby_zones,

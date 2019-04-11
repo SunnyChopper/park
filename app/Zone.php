@@ -11,7 +11,9 @@ class Zone extends Model
     public $primaryKey = "id";
 
     public static function getByDistance($latitude, $longitude, $distance) {
-    	$results = DB::select(DB::raw('SELECT *, (3959 * acos(cos(radians('.$latitude.')) * cos(radians(latitude)) * cos(radians(longitude) - radians('.$longitude.')) + sin(radians('.$latitude.')) * sin(radians(latitude)))) AS distance FROM zones HAVING distance < ' . $distance . ' ORDER BY distance'));
+    	$results = DB::select(DB::raw('SELECT * 
+			FROM zones
+			ORDER BY ACOS(COS(RADIANS($lat))*COS(RADIANS(zones.latitude))*COS(RADIANS(zones.longitude)RADIANS('.$longitude.'))+SIN(RADIANS('.$latitude.'))*SIN(RADIANS(zones.latitude)) WHERE ROUND(zones.latitude,3) LIKE '.$latitude.' AND ROUND(zones.longitude,2) LIKE '.$longitude));
     	return $results;
     }
 }
