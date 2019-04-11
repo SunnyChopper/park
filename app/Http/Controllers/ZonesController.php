@@ -124,9 +124,11 @@ class ZonesController extends Controller
     		foreach($nearby_zones as $zone) {
     			if ($this->does_zone_have_open_parking($zone->id) == true) {
     				$available_parkings = $this->number_of_open_spots($zone->id);
+                    $distance = $this->distance($latitude, $longitude, $zone->latitude, $zone->longitude);
     				$temp_array = array(
     					'zone' => $zone,
-    					'spots' => $available_parkings
+    					'spots' => $available_parkings,
+                        'distance' => round($distance, 2)
     				);
     				array_push($zones_array, $temp_array);
     			}
@@ -137,6 +139,22 @@ class ZonesController extends Controller
 	    		'error' => false
 	    	]);
     	}
+    }
+
+    private function distance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 3959)
+    {
+        // convert from degrees to radians
+        $latFrom = deg2rad($latitudeFrom);
+        $lonFrom = deg2rad($longitudeFrom);
+        $latTo = deg2rad($latitudeTo);
+        $lonTo = deg2rad($longitudeTo);
+
+        $lonDelta = $lonTo - $lonFrom;
+        $a = pow(cos($latTo) * sin($lonDelta), 2) + pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
+        $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
+
+        $angle = atan2(sqrt($a), $b);
+        return $angle * $earthRadius;
     }
 
     private function does_zone_have_open_parking($zone_id) {
