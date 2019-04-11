@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\UserAccount;
+use App\ParkingSession;
 use App\Custom\UserAccountHelper;
 
 class UserAccountsController extends Controller
@@ -160,10 +161,27 @@ class UserAccountsController extends Controller
                 'error' => true
             ]);
         } else {
+            $jsonArray = array();
+            foreach($vehicles as $vehicle) {
+                $tempArray = array();
+                $tempArray["vehicle"] = $vehicle;
+                $tempArray["last_parked"] = $this->get_last_parked_date($vehicle_id);
+                array_push($jsonArray, $tempArray);
+            }
+
             return response()->json([
-                'vehicles' => $vehicles,
+                'vehicles' => $jsonArray,
                 'error' => false
             ]);
+        }
+    }
+
+    private function get_last_parked_date($vehicle_id) {
+        if (ParkingSession::where('vehicle_id', $vehicle_id)->count() == 0) {
+            return "N/A";
+        } else {
+            $session = ParkingSession::where('vehicle_id', $vehicle_id)->orderBy('created_at', 'DESC')->first();
+            return $session->created_at->format('M jS, Y');
         }
     }
 
