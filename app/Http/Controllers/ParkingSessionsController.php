@@ -9,6 +9,7 @@ class ParkingSessionsController extends Controller
 {
     public function api_create(Request $data) {
         $timestamp = date('Y-m-d G:i:s');
+        $date = date('Y-m-d');
 
     	$parking_session = new ParkingSession;
     	$parking_session->city_id = $data->city_id;
@@ -16,11 +17,11 @@ class ParkingSessionsController extends Controller
     	$parking_session->customer_id = $data->customer_id;
     	$parking_session->vehicle_id = $data->vehicle_id;
     	$parking_session->start_time = $timestamp;
-    	$parking_session->parking_date = $data->parking_date;
+    	$parking_session->parking_date = $date;
     	$parking_session->save();
 
     	return response()->json([
-    		'id' => $parking_session->id
+    		'id' => $parking_session->id 
     	]);
     }
 
