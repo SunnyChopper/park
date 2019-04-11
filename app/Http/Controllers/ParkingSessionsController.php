@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ParkingSpot;
 use App\ParkingSession;
 
 class ParkingSessionsController extends Controller
@@ -34,9 +35,29 @@ class ParkingSessionsController extends Controller
 
     public function api_update(Request $data) {
     	$parking_session = ParkingSession::find($data->parking_session_id);
-    	$parking_session->end_time = $data->end_time;
-    	$parking_session->paid = $data->paid;
-    	$parking_session->amount = $data->amount;
+
+        if (isset($data->end_time)) {
+            $timestamp = date('Y-m-d G:i:s');
+            $parking_session->end_time = $timestamp;
+
+            $spot_id = $parking_session->parking_spot_id;
+            $spot = ParkingSpot::find($spot_id);
+            $amount_per_hour = $spot->amount_per_hour;
+
+            $start_time = $parking_session->start_time->format('y-m-d H:m:i');
+            $end_time = new DateTime($timestamp);
+            $start_time = new DateTime($start_time);
+            $diff = $datetime1->diff($datetime2);
+            $hours = $diff->h;
+            $hours = $hours + ($diff->days*24);
+            $amount = $hours * $amount_per_hour;
+            $parking_session->amount = round($amount, 2);
+        }
+    	
+        if (isset($data->paid)) {
+            $parking_session->paid = $data->paid;
+        }
+
     	$parking_session->save();
 
     	return response()->json([
