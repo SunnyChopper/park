@@ -64,6 +64,7 @@ class ZonesController extends Controller
     	$distance = 10;
 
         $angle_radius = $distance / ( 69 * cos( $latitude ) );
+        return $angle_radius;
         $min_lat = $latitude - $angle_radius;
         $max_lat = $latitude + $angle_radius;
         $min_lon = $longitude - $angle_radius;
