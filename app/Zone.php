@@ -13,7 +13,7 @@ class Zone extends Model
     public static function getByDistance($latitude, $longitude, $distance) {
     	$results = DB::select(DB::raw('SELECT * 
 			FROM zones
-			ORDER BY ACOS(COS(RADIANS($lat))*COS(RADIANS(zones.latitude))*COS(RADIANS(zones.longitude)RADIANS('.$longitude.'))+SIN(RADIANS('.$latitude.'))*SIN(RADIANS(zones.latitude)) WHERE ROUND(zones.latitude,3) LIKE '.$latitude.' AND ROUND(zones.longitude,2) LIKE '.$longitude));
+			ORDER BY ACOS(COS(RADIANS('.$latitude.'))*COS(RADIANS(zones.latitude))*COS(RADIANS(zones.longitude)RADIANS('.$longitude.'))+SIN(RADIANS('.$latitude.'))*SIN(RADIANS(zones.latitude)) WHERE ROUND(zones.latitude,3) LIKE '.$latitude.' AND ROUND(zones.longitude,2) LIKE '.$longitude));
     	return $results;
     }
 }
