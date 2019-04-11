@@ -49,7 +49,11 @@ class ParkingSessionsController extends Controller
         if (isset($data->paid)) {
             $parking_session->paid = $data->paid;
         }
-        $parking_session->status = 0;
+
+        $parking_spot = ParkingSpot::find($parking_session->parking_spot_id);
+        $parking_spot->status = 0;
+        $parking_spot->save();
+        
         $parking_session->save();
 
         return response()->json([
