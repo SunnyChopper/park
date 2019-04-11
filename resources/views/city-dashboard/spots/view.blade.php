@@ -23,6 +23,7 @@
 								<th>Amount per Hour</th>
 								<th>Dynamic Pricing</th>
 								<th>Status</th>
+								<th>License Plate</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -46,6 +47,16 @@
 									<td><h4><span class="badge badge-warning">Waiting</span></h4></td>
 									@elseif($spot->status == 3)
 									<td><h4><span class="badge badge-danger">Unauthorized</span></h4>
+									@endif
+
+									@if ($spot->status == 1)
+										<?php 
+											$parking_session = App\ParkingSession::where('parking_spot_id', $spot->id)->orderBy('created_at', 'DESC')->first();
+											$vehicle = App\UserVehicle::find($parking_session->vehicle_id); 
+										?>
+										<td>{{ $vehicle->license_plate }}</td>
+									@else
+										<td>N/A</td>
 									@endif
 
 									
