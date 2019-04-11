@@ -28,7 +28,7 @@ Route::post('/users/update', 'UserAccountsController@api_update');
 Route::post('/users/delete', 'UserAccountsController@api_delete');
 Route::post('/users/check/username', 'UserAccountsController@api_check_username');
 Route::post('/users/check/email', 'UserAccountsController@api_check_email');
-Route::post('/users/login', 'UserAccountsController@login');
+Route::post('/users/login', 'UserAccountsController@api_login');
 
 Route::post('/parkings/create', 'ParkingSessionsController@api_create');
 Route::get('/parkings/read/{parking_session_id}', 'ParkingSessionsController@api_read');

@@ -11,6 +11,7 @@
 					<h4>Useful Links</h4>
 					<ul>
 						@if(App\Custom\UserAccountHelper::is_user_logged_in() == false)
+						<li><i class="fa fa-angle-right"></i> <a href="{{ url('/city/dashboard') }}">City Login</a></li>
 						<li><i class="fa fa-angle-right"></i> <a href="/login">Login</a></li>
 						<li><i class="fa fa-angle-right"></i> <a href="/register">Register</a></li>
 						@elseif(App\Custom\UserAccountHelper::is_user_logged_in() == true)
