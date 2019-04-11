@@ -131,6 +131,7 @@ class UserAccountsController extends Controller
     }
 
     public function api_login(Request $data) {
+        return $data->username;
         if (UserAccount::where('username', strtolower($data->username))->count() > 0) {
             $user_account = UserAccount::where('username', strtolower($data->username))->first();
             if (Hash::check($data->password, $user_account->password)) {
