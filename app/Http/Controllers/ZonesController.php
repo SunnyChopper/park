@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\ParkingSpot;
 use App\Zone;
@@ -58,16 +59,19 @@ class ZonesController extends Controller
     	]);
     }
 
-    public function api_get_near($latitude, $longitude) {
+    public function api_get_near() {
+        $latitude = $_GET['latitude'];
+        $longitude = $_GET['longitude'];
     	$distance = 10;
-        return $distance;
+
         $angle_radius = $distance / ( 69 * cos( $latitude ) );
         $min_lat = $latitude - $angle_radius;
         $max_lat = $latitude + $angle_radius;
         $min_lon = $longitude - $angle_radius;
         $max_lon = $longitude + $angle_radius;
 
-        $nearby_zones = DB::select(DB::raw('SELECT * FROM `zones` WHERE latitude BETWEEN '.$min_lat.' AND '.$max_lat.' AND longitude BETWEEN '.$min_lon.' AND '.$max_lon''));
+        $raw_query = 'SELECT * FROM zones WHERE latitude BETWEEN '.$max_lat.' AND '.$min_lat.' AND longitude BETWEEN '.$max_lon.' AND '.$min_lon;
+        $nearby_zones = DB::select(DB::raw($raw_query));
 
     	if (empty($nearby_zones)) {
     		while (empty($nearby_zones)) {
@@ -79,18 +83,14 @@ class ZonesController extends Controller
                 $min_lon = $longitude - $angle_radius;
                 $max_lon = $longitude + $angle_radius;
 
-    			$$nearby_zones = DB::select(DB::raw('SELECT * FROM `zones` WHERE latitude BETWEEN '.$min_lat.' AND '.$max_lat.' AND longitude BETWEEN '.$min_lon.' AND '.$max_lon''));
+    			$nearby_zones = DB::select(DB::raw('SELECT * FROM zones WHERE latitude BETWEEN '.$min_lat.' AND '.$max_lat.' AND longitude BETWEEN '.$min_lon.' AND '.$max_lon));
 
     			if ($distance == 150) {
     				break;
     			}
     		}
     	}
-
-        return response()->json([
-            'zones' => $nearby_zones,
-            'error' => true
-        ])
+        
 
     	if (empty($nearby_zones)) {
     		return response()->json([
