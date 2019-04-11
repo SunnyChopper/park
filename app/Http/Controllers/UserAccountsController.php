@@ -124,7 +124,7 @@ class UserAccountsController extends Controller
         $data = array(
             "email" => $data->email,
             "stripeToken" => $data->stripeToken,
-            "amount" => $data->amount,
+            "amount" => 1500,
             "currency" => $data->currency,
             "description" => $data->description
         );
