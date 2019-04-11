@@ -23,7 +23,7 @@ Route::post('/vehicles/update', 'UserVehiclesController@api_update');
 Route::post('/vehicles/delete', 'UserVehiclesController@api_delete');
 
 Route::post('/users/create', 'UserAccountsController@api_create');
-Route::get('/users/read/{user_account_id}', 'UserAccountsController@api_read');
+Route::get('/users/read', 'UserAccountsController@api_read');
 Route::post('/users/update', 'UserAccountsController@api_update');
 Route::post('/users/delete', 'UserAccountsController@api_delete');
 Route::post('/users/check/username', 'UserAccountsController@api_check_username');
