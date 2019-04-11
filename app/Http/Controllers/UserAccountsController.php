@@ -165,7 +165,7 @@ class UserAccountsController extends Controller
             foreach($vehicles as $vehicle) {
                 $tempArray = array();
                 $tempArray["vehicle"] = $vehicle;
-                $tempArray["last_parked"] = $this->get_last_parked_date($vehicle_id);
+                $tempArray["last_parked"] = $this->get_last_parked_date($vehicle->id);
                 array_push($jsonArray, $tempArray);
             }
 
