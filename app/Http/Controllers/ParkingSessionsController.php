@@ -22,6 +22,10 @@ class ParkingSessionsController extends Controller
     	$parking_session->parking_date = $date;
     	$parking_session->save();
 
+        $parking_spot = ParkingSpot::find($data->parking_spot_id);
+        $parking_spot->status = 1;
+        $parking_spot->save();
+
     	return response()->json([
     		'id' => $parking_session->id 
     	]);
