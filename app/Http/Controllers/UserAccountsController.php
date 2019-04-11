@@ -146,7 +146,7 @@ class UserAccountsController extends Controller
         } else {
             return response()->json([
                     'login_status' => false,
-                    'error' => 'Password is incorrect.'
+                    'error' => 'Username does not exist.'
                 ]);
         }
     }
