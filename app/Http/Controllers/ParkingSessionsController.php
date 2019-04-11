@@ -49,7 +49,7 @@ class ParkingSessionsController extends Controller
         if (isset($data->paid)) {
             $parking_session->paid = $data->paid;
         }
-
+        $parking_session->status = 0;
         $parking_session->save();
 
         return response()->json([
