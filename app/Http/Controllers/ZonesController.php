@@ -63,19 +63,36 @@ class ZonesController extends Controller
     	$longitude = $data->longitude;
     	$distance = 10;
 
-    	$nearby_zones = Zone::getByDistance($latitude, $longitude, $distance);
+        $angle_radius = $distance / ( 69 * cos( $latitude ) );
+        $min_lat = $latitude - $angle_radius;
+        $max_lat = $latitude + $angle_radius;
+        $min_lon = $longitude - $angle_radius;
+        $max_lon = $longitude + $angle_radius;
+
+        $nearby_zones = Zone::whereBetween('longitude', [$min_lon, $max_lon])->whereBetween('latitude', [$min_lat, $max_lat])->get();
+
     	if (empty($nearby_zones)) {
     		while (empty($nearby_zones)) {
     			// Increase in increments of 10
     			$distance += 10;
+                $angle_radius = $distance / ( 69 * cos( $latitude ) );
+                $min_lat = $latitude - $angle_radius;
+                $max_lat = $latitude + $angle_radius;
+                $min_lon = $longitude - $angle_radius;
+                $max_lon = $longitude + $angle_radius;
 
-    			$nearby_zones = Zone::getByDistance($latitude, $longitude, $distance);
+    			$$nearby_zones = Zone::whereBetween('longitude', [$min_lon, $max_lon])->whereBetween('latitude', [$min_lat, $max_lat])->get();
 
     			if ($distance == 150) {
     				break;
     			}
     		}
     	}
+
+        return response()->json([
+            'zones' => $nearby_zones,
+            'error' => true
+        ])
 
     	if (empty($nearby_zones)) {
     		return response()->json([
