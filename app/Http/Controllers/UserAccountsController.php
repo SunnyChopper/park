@@ -48,8 +48,8 @@ class UserAccountsController extends Controller
         }
     }
 
-    public function api_read($user_account_id) {
-    	$user_account = UserAccount::find($user_account_id);
+    public function api_read() {
+    	$user_account = UserAccount::find($_GET['user_account_id']);
     	return response()->json([
     		'user_account' => $user_account
     	]);
