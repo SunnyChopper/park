@@ -38,8 +38,7 @@ class ParkingSessionsController extends Controller
     	$parking_session = ParkingSession::find($data->parking_session_id);
 
         if ($data->end_time == 1) {
-            $timestamp = Carbon::now()->timestamp;
-            $parking_session->end_time = $timestamp;
+            $parking_session->end_time = Carbon::now();
 
             // $spot_id = $parking_session->parking_spot_id;
             // $spot = ParkingSpot::find($spot_id);
