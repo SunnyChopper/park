@@ -49,7 +49,7 @@ class CheckWaitingSpots extends Command
                 // get updated time
                 $now = Carbon::now();
                 $diff = $now->diffInSeconds($spot->updated_at);
-                if ($diff > 30) {
+                if ($diff > 5) {
                     $spot->status = 3;
                     $spot->save();
                 }
