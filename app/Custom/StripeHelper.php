@@ -18,10 +18,10 @@ class StripeHelper {
 		$this->amount = $amount;
 	}
 
-	public function checkout(Request $data) {
+	public function checkout($data) {
 		// Get amount from either
 		if ($this->amount == 0) {
-			$amount = $data->amount;
+			$amount = $data["amount"];
 		} else {
 			$amount = $this->amount;
 		}
@@ -32,17 +32,17 @@ class StripeHelper {
 		try {
 			// Create a customer
 			$customer = $stripe->customers()->create([
-				"email" => $data->email
+				"email" => $data["email"]
 			]);
 
 			// Create a card for customer
-			$card = $stripe->cards()->create($customer["id"], $data->stripeToken);
+			$card = $stripe->cards()->create($customer["id"], $data["stripeToken"]);
 
 			$charge = $stripe->charges()->create([
 				'customer' => $customer["id"],
 				'currency' => 'USD',
 				'amount'   => $amount,
-				'description' => $data->description
+				'description' => $data["description"]
 			]);
 
 			if($charge['status'] == 'succeeded') {
