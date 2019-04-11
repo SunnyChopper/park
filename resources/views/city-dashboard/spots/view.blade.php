@@ -51,7 +51,7 @@
 									
 									<td>
 										<a href="/city/spots/edit/{{ $spot->id }}" class="btn btn-warning" style="float: right;">Edit</a>
-										<a href="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={%22city_id%22:{{ $city->id }},%22zone_id%22:{{ $spot->zone_id }}}" target="_blank" class="btn btn-primary mr-2" style="float: right;">Generate QR</a>
+										<a href="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl={%22city_id%22:{{ $city->id }},%22spot_id%22:{{ $spot->id }}}" target="_blank" class="btn btn-primary mr-2" style="float: right;">Generate QR</a>
 									</td>
 									
 								</tr>
