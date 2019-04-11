@@ -44,10 +44,10 @@ class ParkingSessionsController extends Controller
             $spot = ParkingSpot::find($spot_id);
             $amount_per_hour = $spot->amount_per_hour;
 
-            $start_time = $parking_session->start_time->format('Y-m-d G:i:s');
+            $start_time = $parking_session->start_time;
             $end_time = new DateTime($timestamp);
             $start_time = new DateTime($start_time);
-            $diff = $datetime1->diff($datetime2);
+            $diff = $start_time->diff($end_time);
             $hours = $diff->h;
             $hours = $hours + ($diff->days*24);
             $amount = $hours * $amount_per_hour;
