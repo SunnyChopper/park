@@ -58,9 +58,7 @@ class ZonesController extends Controller
     	]);
     }
 
-    public function api_get_near(Request $data) {
-    	$latitude = $data->latitude;
-    	$longitude = $data->longitude;
+    public function api_get_near($latitude, $longitude) {
     	$distance = 10;
         return $distance;
         $angle_radius = $distance / ( 69 * cos( $latitude ) );
