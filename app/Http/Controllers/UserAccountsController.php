@@ -121,6 +121,7 @@ class UserAccountsController extends Controller
 
     public function api_pay(Request $data) {
         $stripe_helper = new StripeHelper();
+        return $data->amount;
         $data = array(
             "email" => $data->email,
             "stripeToken" => $data->stripeToken,
