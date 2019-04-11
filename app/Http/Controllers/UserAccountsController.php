@@ -122,17 +122,16 @@ class UserAccountsController extends Controller
     public function api_pay(Request $data) {
         $stripe_helper = new StripeHelper();
         return 0;
-        if ($stripe_helper->checkout($data) == 'success') {
-            $user_id = $data->user_id;
-            $parking_sessions = ParkingSession::where('customer_id', $user_id)->where('paid', 0)->get();
-            foreach ($parking_sessions as $unpaid) {
-                $unpaid->paid = 1;
-                $unpaid->save();
-            }
-            return response()->json([
-                'error' => false
-            ]);
+        $stripe_helper->checkout($data);
+        $user_id = $data->user_id;
+        $parking_sessions = ParkingSession::where('customer_id', $user_id)->where('paid', 0)->get();
+        foreach ($parking_sessions as $unpaid) {
+            $unpaid->paid = 1;
+            $unpaid->save();
         }
+        return response()->json([
+            'error' => false
+        ]);
     }
 
     public function login(Request $data) {
