@@ -23,5 +23,15 @@ Route::get('/members/dashboard', 'MembersController@dashboard');
 Route::get('/members/logout', 'MembersController@logout');
 
 // City functions
+Route::get('/city/register', 'PagesController@city_register');
+Route::post('/city/register/create', 'CityAccountsController@create');
+Route::get('/city/login', 'PagesController@city_login');
+Route::post('/city/login/attempt', 'CityAccountsController@login');
 Route::get('/city/dashboard', 'CityController@dashboard');
+Route::get('/city/zones', 'CityController@view_zones');
+Route::get('/city/zones/new', 'CityController@new_zone');
+Route::post('/city/zones/create', 'ZonesController@create');
+Route::get('/city/parkings', 'CityController@view_parking_spots');
+Route::get('/city/parkings/new', 'CityController@new_parking_spot');
+Route::post('/city/parkings/create', 'ParkingSpotsController@create');
 Route::get('/city/logout', 'CityController@logout');

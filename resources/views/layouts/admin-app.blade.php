@@ -15,6 +15,7 @@
 	    <link rel="stylesheet" href="{{ URL::asset('vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css?v=2') }}">
 	    <link rel="stylesheet" href="{{ URL::asset('vendor/charts/c3charts/c3.css?v=2') }}">
 	    <link rel="stylesheet" href="{{ URL::asset('vendor/fonts/flag-icon-css/flag-icon.min.css?v=2') }}">
+	    <link href="{{ URL::asset('css/layouts.css') }}" rel="stylesheet">
 
 	    @if(isset($page_title))
 	    	<title>{{ config('app.name') }} - {{ $page_title }}</title>

@@ -24,4 +24,14 @@ class PagesController extends Controller
         $page_title = "Citizen Login";
         return view('pages.login')->with('page_title', $page_title);
     }
+
+    public function city_register() {
+        $page_title = "City Register";
+        return view('pages.register-city')->with('page_title', $page_title);
+    }
+
+    public function city_login() {
+        $page_title = "City Login";
+        return view('pages.login-city')->with('page_title', $page_title);
+    }
 }

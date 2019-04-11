@@ -24,6 +24,28 @@ class ZonesController extends Controller
     	]);
     }
 
+    public function create(Request $data) {
+        $address = $data->address . ", " . $data->city . ", " . $data->state . ", " . $data->zipcode;
+        $encodedAddress = urlencode($address);
+        $geocode = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address=' . $encodedAddress . '&key=AIzaSyBHJ1ZQSVB5CRffJT-RDyiLPE4CzNa9oDo');
+        $output = json_decode($geocode);
+
+        // Get useful data
+        $latitude = $output->results[0]->geometry->location->lat;
+        $longitude = $output->results[0]->geometry->location->lng;
+        
+        $zone = new Zone;
+        $zone->title = $data->title;
+        $zone->city_id = $data->city_id;
+        $zone->city = $data->city;
+        $zone->state = $data->state;
+        $zone->latitude = $latitude;
+        $zone->longitude = $longitude;
+        $zone->save();
+
+        return redirect(url('/city/zones'));
+    }
+
     public function api_read($zone_id) {
     	$zone = Zone::find($zone_id);
     	return response()->json([

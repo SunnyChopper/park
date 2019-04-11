@@ -11,7 +11,7 @@
                         Menu
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link active" href="{{ url('/city/dashboard') }}"><i class="fab fa-fw fa-wpforms"></i>Dashboard</a>
+                        <a class="nav-link" href="{{ url('/city/dashboard') }}"><i class="fab fa-fw fa-wpforms"></i>Dashboard</a>
                     </li>
 
                     <li class="nav-item ">
@@ -58,11 +58,7 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/city/parkings/add') }}">Add Parking Spot</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/city/parkings/qr') }}">QR Code Generator</a>
+                                    <a class="nav-link" href="{{ url('/city/parkings/new') }}">Add Parking Spot</a>
                                 </li>
                             </ul>
                         </div>

@@ -18,5 +18,6 @@
 <script src="{{ URL::asset('vendor/charts/c3charts/d3-5.4.0.min.js?v=2') }}"></script>
 <script src="{{ URL::asset('vendor/charts/c3charts/C3chartjs.js?v=2') }}"></script>
 <script src="{{ URL::asset('libs/js/dashboard-ecommerce.js?v=2') }}"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHJ1ZQSVB5CRffJT-RDyiLPE4CzNa9oDo"></script>
 
 @yield('page_js')
