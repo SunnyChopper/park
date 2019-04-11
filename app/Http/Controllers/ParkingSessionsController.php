@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ParkingSpot;
 use App\ParkingSession;
+use Carbon\Carbon;
 
 class ParkingSessionsController extends Controller
 {
@@ -35,15 +36,14 @@ class ParkingSessionsController extends Controller
 
     public function api_update(Request $data) {
     	$parking_session = ParkingSession::find($data->parking_session_id);
-        return $data->end_time;
 
-        if (isset($data->end_time)) {
-            $timestamp = date('Y-m-d G:i:s');
+        if ($data->end_time == 1) {
+            $timestamp = Carbon::now()->timestamp;
             $parking_session->end_time = $timestamp;
 
-            // $spot_id = $parking_session->parking_spot_id;
-            // $spot = ParkingSpot::find($spot_id);
-            // $amount_per_hour = $spot->amount_per_hour;
+            $spot_id = $parking_session->parking_spot_id;
+            $spot = ParkingSpot::find($spot_id);
+            $amount_per_hour = $spot->amount_per_hour;
 
             // $start_time = $parking_session->start_time;
             // $end_time = new DateTime($timestamp);
