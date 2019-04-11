@@ -44,8 +44,7 @@ class ParkingSessionsController extends Controller
             $spot = ParkingSpot::find($spot_id);
             $amount_per_hour = $spot->amount_per_hour;
 
-            $start_time = $parking_session->start_time;
-            $hours = $end_time->diffInHours($start_time);
+            $hours = Carbon::now()->diffInHours($parking_session->start_time);
             $amount = $hours * $amount_per_hour;
             $parking_session->amount = round($amount, 2);
         }
