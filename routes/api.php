@@ -60,4 +60,4 @@ Route::get('/spots/read/{parking_spot_id}', 'ParkingSpotsController@api_read');
 Route::post('/spots/update', 'ParkingSpotsController@api_update');
 Route::post('/spots/delete', 'ParkingSpotsController@api_delete');
 
-Route::get('/zones/near', 'ZonesController@api_get_near');
+Route::post('/zones/near', 'ZonesController@api_get_near');
