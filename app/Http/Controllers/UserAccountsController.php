@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\UserAccount;
+use App\Custom\UserAccountHelper;
 
 class UserAccountsController extends Controller
 {
@@ -149,6 +150,20 @@ class UserAccountsController extends Controller
                     'login_status' => false,
                     'error' => 'Username does not exist.'
                 ]);
+        }
+    }
+
+    public function api_get_vehicles(Request $data) {
+        $vehicles = UserAccountHelper::get_user_vehicles($data->user_id);
+        if (empty($vehicles)) {
+            return response()->json([
+                'error' => true
+            ]);
+        } else {
+            return response()->json([
+                'vehicles' => $vehicles,
+                'error' => true
+            ]);
         }
     }
 

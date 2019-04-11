@@ -4,6 +4,7 @@ namespace App\Custom;
 
 use Illuminate\Support\Facades\Session;
 use App\UserAccount;
+use App\UserVehicle;
 
 class UserAccountHelper {
 	
@@ -17,6 +18,11 @@ class UserAccountHelper {
 		} else {
 			return false;
 		}
+	}
+
+	public static function get_user_vehicles($user_id) {
+		$vehicles = UserVehicle::where('customer_id', $user_id)->get();
+		return $vehicles;
 	}
 
 	public static function logout() {
