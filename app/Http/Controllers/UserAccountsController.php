@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\UserAccount;
 use App\ParkingSession;
 use App\Custom\UserAccountHelper;
+use App\Custom\StripeHelper;
 
 class UserAccountsController extends Controller
 {
@@ -114,6 +115,21 @@ class UserAccountsController extends Controller
         } else {
             return response()->json([
                 'available' => true
+            ]);
+        }
+    }
+
+    public function api_pay(Request $data) {
+        $stripe_helper = StripeHelper();
+        if ($stripe_helper->checkout($data) == 'success') {
+            $user_id = $data->user_id;
+            $parking_sessions = ParkingSession::where('customer_id', $user_id)->where('paid', 0)->get();
+            foreach ($parking_sessions as $unpaid) {
+                $unpaid->paid = 1;
+                $unpaid->save();
+            }
+            return response()->json([
+                'error' => false
             ]);
         }
     }

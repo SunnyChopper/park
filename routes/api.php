@@ -32,6 +32,7 @@ Route::post('/users/login', 'UserAccountsController@api_login');
 Route::post('/users/vehicles', 'UserAccountsController@api_get_vehicles');
 Route::post('/users/unpaid', 'UserAccountsController@api_get_unpaid_balance');
 Route::post('/users/history', 'UserAccountsController@api_get_parking_history');
+Route::post('/users/pay', 'UserAccountsController@api_pay');
 
 Route::post('/parkings/create', 'ParkingSessionsController@api_create');
 Route::get('/parkings/read/{parking_session_id}', 'ParkingSessionsController@api_read');
