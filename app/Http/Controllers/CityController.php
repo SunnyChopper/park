@@ -29,7 +29,7 @@ class CityController extends Controller
         $city_account = $this->account();
         $zones = Zone::where('city_id', $city_account->id)->get();
 
-        return view('city-dashboard.zones.view')->with('page_title', $page_title)->with('zones', $zones);
+        return view('city-dashboard.zones.view')->with('page_title', $page_title)->with('zones', $zones)->with('city', $city_account);
     }
 
     public function new_zone() {
