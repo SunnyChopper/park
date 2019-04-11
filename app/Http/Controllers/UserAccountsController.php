@@ -190,6 +190,16 @@ class UserAccountsController extends Controller
         ]);
     }
 
+    public function api_get_parking_history(Request $data) {
+        $user_id = $data->user_id;
+        $history = ParkingSession::where('customer_id', $user_id)->get();
+
+        return response()->json([
+            'history' => $history,
+            'error' => false
+        ]);
+    }
+
     private function get_last_parked_date($vehicle_id) {
         if (ParkingSession::where('vehicle_id', $vehicle_id)->count() == 0) {
             return "N/A";
