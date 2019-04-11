@@ -124,7 +124,7 @@ class UserAccountsController extends Controller
         $checkoutData = array(
             "email" => $data->email,
             "stripeToken" => $data->stripeToken,
-            "amount" => 1500,
+            "amount" => $data->amount,
             "currency" => $data->currency,
             "description" => $data->description
         );
