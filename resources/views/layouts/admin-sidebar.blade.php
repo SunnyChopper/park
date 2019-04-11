@@ -49,9 +49,6 @@
                         <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-car"></i>Parking Spots</a>
                         <div id="submenu-3" class="collapse submenu" style="">
                             <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/city/parkings/live') }}">Live Dashboard</a>
-                                </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/city/parkings/') }}">View All Parking Spots</a>
