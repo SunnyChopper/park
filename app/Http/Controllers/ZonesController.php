@@ -58,7 +58,7 @@ class ZonesController extends Controller
     	]);
     }
 
-    public function get_nearest_zones(Request $data) {
+    public function api_get_near(Request $data) {
     	$latitude = $data->latitude;
     	$longitude = $data->longitude;
     	$distance = 10;
