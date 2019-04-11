@@ -135,7 +135,8 @@ class UserAccountsController extends Controller
             $user_account = UserAccount::where('username', strtolower($data->username))->first();
             if (Hash::check($data->password, $user_account->password)) {
                 return response()->json([
-                    'login_status' => true
+                    'login_status' => true,
+                    'user_id' => $user_account->id
                 ]); 
             } else {
                 return response()->json([
