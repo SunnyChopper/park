@@ -124,13 +124,13 @@ class UserAccountsController extends Controller
         $data = array(
             "email" => $data->email,
             "stripeToken" => $data->stripeToken,
-            "amount" => 1500,
+            "amount" => $data->amount,
             "currency" => $data->currency,
             "description" => $data->description
         );
         $stripe_helper->checkout($data);
-        return 0;
         $user_id = $data->user_id;
+        return $user_id;
         $parking_sessions = ParkingSession::where('customer_id', $user_id)->where('paid', 0)->get();
         foreach ($parking_sessions as $unpaid) {
             $unpaid->paid = 1;
