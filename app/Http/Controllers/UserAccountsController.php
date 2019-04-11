@@ -162,7 +162,7 @@ class UserAccountsController extends Controller
         } else {
             return response()->json([
                 'vehicles' => $vehicles,
-                'error' => true
+                'error' => false
             ]);
         }
     }
