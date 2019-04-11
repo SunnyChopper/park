@@ -69,7 +69,7 @@ class ZonesController extends Controller
         $min_lon = $longitude - $angle_radius;
         $max_lon = $longitude + $angle_radius;
 
-        $nearby_zones = Zone::whereBetween('longitude', [$min_lon, $max_lon])->whereBetween('latitude', [$min_lat, $max_lat])->get();
+        $nearby_zones = DB::select(DB::raw('SELECT * FROM `zones` WHERE latitude BETWEEN '.$min_lat.' AND '.$max_lat.' AND longitude BETWEEN '.$min_lon.' AND '.$max_lon''));
 
     	if (empty($nearby_zones)) {
     		while (empty($nearby_zones)) {
@@ -81,7 +81,7 @@ class ZonesController extends Controller
                 $min_lon = $longitude - $angle_radius;
                 $max_lon = $longitude + $angle_radius;
 
-    			$$nearby_zones = Zone::whereBetween('longitude', [$min_lon, $max_lon])->whereBetween('latitude', [$min_lat, $max_lat])->get();
+    			$$nearby_zones = DB::select(DB::raw('SELECT * FROM `zones` WHERE latitude BETWEEN '.$min_lat.' AND '.$max_lat.' AND longitude BETWEEN '.$min_lon.' AND '.$max_lon''));
 
     			if ($distance == 150) {
     				break;
