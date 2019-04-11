@@ -176,6 +176,20 @@ class UserAccountsController extends Controller
         }
     }
 
+    public function api_get_unpaid_balance(Request $data) {
+        $user_id = $data->user_id;
+        $unpaid = ParkingSession::where('customer_id', $user_id)->where('paid', 0)->get();
+        $balance = 0.00;
+        foreach($unpaid as $late_payment) {
+            $balance += $late_payment->amount;
+        }
+
+        return response()->json([
+            'balance' => $balance,
+            'error' => false
+        ]);
+    }
+
     private function get_last_parked_date($vehicle_id) {
         if (ParkingSession::where('vehicle_id', $vehicle_id)->count() == 0) {
             return "N/A";
