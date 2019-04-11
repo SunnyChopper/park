@@ -52,7 +52,7 @@ class CityController extends Controller
         $city = $this->account();
         $spots = ParkingSpot::where('city_id', $city->id)->get();
 
-        return view('city-dashboard.spots.view')->with('page_title', $page_title)->with('spots', $spots);
+        return view('city-dashboard.spots.view')->with('page_title', $page_title)->with('spots', $spots)->with('city', $city);
     }
 
     public function new_parking_spot() {
