@@ -121,14 +121,14 @@ class UserAccountsController extends Controller
 
     public function api_pay(Request $data) {
         $stripe_helper = new StripeHelper();
-        $data = array(
+        $checkoutData = array(
             "email" => $data->email,
             "stripeToken" => $data->stripeToken,
             "amount" => 1500,
             "currency" => $data->currency,
             "description" => $data->description
         );
-        $stripe_helper->checkout($data);
+        $stripe_helper->checkout($checkoutData);
         $user_id = $data->user_id;
         return $user_id;
         $parking_sessions = ParkingSession::where('customer_id', $user_id)->where('paid', 0)->get();
