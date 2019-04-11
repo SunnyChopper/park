@@ -39,24 +39,18 @@ class ParkingSessionsController extends Controller
 
         if ($data->end_time == 1) {
             $parking_session->end_time = Carbon::now();
-
-            $spot_id = $parking_session->parking_spot_id;
-            $spot = ParkingSpot::find($spot_id);
-            $amount_per_hour = $spot->amount_per_hour;
-
-            $hours = Carbon::now()->diffInHours($parking_session->start_time);
-            $amount = $hours * $amount_per_hour;
-            $parking_session->amount = round($amount, 2);
+            $parking_session->amount = $data->amount;
         }
     	
         if (isset($data->paid)) {
             $parking_session->paid = $data->paid;
         }
 
-    	$parking_session->save();
+        $parking_session->save();
 
-    	return response()->json([
-    		'id' => $parking_session->id
-    	]);
+        return response()->json([
+            'id' => $parking_session->id
+        ]);
+	
     }
 }
